@@ -98,6 +98,11 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
   const formatFullCurrency = (val: number) => 
     new Intl.NumberFormat('no-NO', { style: 'currency', currency: 'NOK', maximumFractionDigits: 0 }).format(val);
 
+  // New helper for the axes (Attendees and Price Headers)
+  const formatWithSpaces = (val: number) => {
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
   const getCellColor = (value: number) => {
     if (Math.abs(value) < 1) return 'bg-slate-100 text-slate-500';
     if (value > 0) return 'bg-emerald-100 text-emerald-700 font-medium print:bg-emerald-50 print:text-emerald-900'; 
@@ -162,7 +167,7 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
                       <div className="text-xs font-light opacity-70 mb-0.5 print:opacity-100">
                           {idx === 2 ? 'Nå' : `${steps[idx] > 0 ? '+' : ''}${steps[idx]*100}%`}
                       </div>
-                      <div className="font-bold text-base">{col.price} kr</div>
+                      <div className="font-bold text-base whitespace-nowrap">{formatWithSpaces(col.price)} kr</div>
                     </th>
                   ))}
                 </tr>
@@ -172,7 +177,7 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
                   <tr key={rowIdx}>
                     <td className={`p-3 rounded-lg font-semibold text-left ${rowIdx === 2 ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200 print:ring-indigo-400 print:bg-indigo-50' : 'bg-slate-50 text-slate-600 print:bg-slate-100'}`}>
                       <div className="flex flex-col">
-                          <span className="text-base">{row.attendees}</span>
+                          <span className="text-base whitespace-nowrap">{formatWithSpaces(row.attendees)}</span>
                           <span className="text-[10px] font-light opacity-70 print:opacity-100">
                               {rowIdx === 2 ? `Nå (${baseAttendees})` : `${steps[rowIdx] > 0 ? '+' : ''}${steps[rowIdx]*100}%`}
                           </span>

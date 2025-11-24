@@ -20,9 +20,9 @@ export const ProjectHeader: React.FC<Props> = ({ info, onChange }) => {
         <h2 className="text-lg font-semibold text-slate-800">Prosjektdetaljer</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Project Name */}
-        <div className="space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+        {/* Project Name - Span 3 */}
+        <div className="space-y-2 lg:col-span-3">
           <label className="flex items-center text-xs font-semibold uppercase tracking-wider text-slate-500 print:text-slate-600">
             <FileText className="w-3 h-3 mr-1.5" />
             Navn
@@ -39,8 +39,8 @@ export const ProjectHeader: React.FC<Props> = ({ info, onChange }) => {
           />
         </div>
 
-        {/* Owner */}
-        <div className="space-y-2">
+        {/* Owner - Span 3 */}
+        <div className="space-y-2 lg:col-span-3">
           <label className="flex items-center text-xs font-semibold uppercase tracking-wider text-slate-500 print:text-slate-600">
             <User className="w-3 h-3 mr-1.5" />
             Prosjekteier
@@ -57,8 +57,8 @@ export const ProjectHeader: React.FC<Props> = ({ info, onChange }) => {
           />
         </div>
 
-        {/* Date Range */}
-        <div className="space-y-2 lg:col-span-1">
+        {/* Date Range - Span 4 (Increased space) */}
+        <div className="space-y-2 lg:col-span-4">
           <label className="flex items-center text-xs font-semibold uppercase tracking-wider text-slate-500 print:text-slate-600">
             <Calendar className="w-3 h-3 mr-1.5" />
             Periode
@@ -83,8 +83,8 @@ export const ProjectHeader: React.FC<Props> = ({ info, onChange }) => {
           </div>
         </div>
 
-        {/* Location */}
-        <div className="space-y-2">
+        {/* Location - Span 2 (Reduced space slightly to fit row) */}
+        <div className="space-y-2 lg:col-span-2">
           <label className="flex items-center text-xs font-semibold uppercase tracking-wider text-slate-500 print:text-slate-600">
             <MapPin className="w-3 h-3 mr-1.5" />
             Sted
@@ -97,7 +97,7 @@ export const ProjectHeader: React.FC<Props> = ({ info, onChange }) => {
             value={info.location}
             onChange={(e) => onChange('location', e.target.value)}
             className="block w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm print:hidden"
-            placeholder="Eks: Solstrand Camping"
+            placeholder="Eks: Solstrand"
           />
         </div>
       </div>

@@ -3,6 +3,7 @@ import { ProjectHeader } from './components/ProjectHeader';
 import { SummaryCard } from './components/SummaryCard';
 import { BudgetTable } from './components/BudgetTable';
 import { SensitivityAnalysis } from './components/SensitivityAnalysis';
+import { SaltLogo } from './components/SaltLogo';
 import { BudgetItem, ProjectInfo, BudgetCategory, CostType } from './types';
 import { Download, Plus, FileText, Printer } from 'lucide-react';
 
@@ -112,8 +113,11 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
                 <div className="flex items-center gap-3">
-                    <div className="bg-indigo-600 text-white font-bold p-1.5 rounded-lg shadow-sm shadow-indigo-200">SB</div>
-                    <h1 className="text-lg font-bold text-slate-800 tracking-tight">Salt Budsjett</h1>
+                    {/* Logo */}
+                    <div className="text-slate-900">
+                      <SaltLogo className="h-8 w-auto" />
+                    </div>
+                    <h1 className="text-lg font-bold text-slate-800 tracking-tight ml-1">Salt Prosjektbudsjett</h1>
                 </div>
                 <div className="flex space-x-3">
                     <button 

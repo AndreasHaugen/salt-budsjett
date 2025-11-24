@@ -35,26 +35,37 @@ export const BudgetTable: React.FC<Props> = ({
 
   const formatCurrency = (val: number) => new Intl.NumberFormat('no-NO', { maximumFractionDigits: 0 }).format(val);
 
+  // Helper to format input values with spaces (10000 -> 10 000)
+  const formatInput = (val: number | undefined) => {
+    if (val === undefined || val === null) return '';
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
+  // Helper to parse input values with spaces back to number
+  const parseInput = (val: string): number => {
+    return parseFloat(val.replace(/\s/g, '')) || 0;
+  };
+
   // Icon selection
   const Icon = type === 'fixed' 
     ? (isIncome ? Wallet : CreditCard)
     : (isIncome ? Coins : Banknote);
 
-  // Validation
+  // Validation & Input Handler
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (['e', 'E', '+', '-'].includes(e.key)) {
+    // Allow numbers, backspace, tab, arrows, and space (for formatting)
+    // Block letters, e, +, -
+    if (!/[\d\s]/.test(e.key) && 
+        !['Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'].includes(e.key) &&
+        !e.ctrlKey && !e.metaKey) {
       e.preventDefault();
     }
   };
 
-  const handleNumberChange = (id: string, field: keyof BudgetItem, value: string) => {
-    let newValue = parseFloat(value);
-    if (isNaN(newValue)) {
-      newValue = 0;
-    } else if (newValue < 0) {
-      newValue = 0;
-    }
-    onUpdate(id, field, newValue);
+  const handleNumberChange = (id: string, field: keyof BudgetItem, rawValue: string) => {
+    // Remove non-numeric characters (except keeping it string for a moment if needed, but we just strip spaces)
+    const numericValue = parseInput(rawValue);
+    onUpdate(id, field, numericValue);
   };
 
   return (
@@ -123,13 +134,13 @@ export const BudgetTable: React.FC<Props> = ({
                       <div className="relative">
                          {/* Print View for Quantity */}
                         <span className="hidden print:block text-slate-700 text-sm">
-                            {item.quantity}
+                            {formatInput(item.quantity)}
                         </span>
                         <input
-                            type="number"
-                            min="0"
+                            type="text"
+                            inputMode="numeric"
                             onKeyDown={handleKeyDown}
-                            value={item.quantity ?? ''}
+                            value={formatInput(item.quantity)}
                             onChange={(e) => handleNumberChange(item.id, 'quantity', e.target.value)}
                             className={`w-full text-right bg-white rounded-md border border-slate-200 py-1.5 px-2 text-sm text-slate-700 outline-none transition-all focus:border-transparent focus:ring-2 ${ringFocus} print:hidden`}
                             placeholder="0"
@@ -143,10 +154,10 @@ export const BudgetTable: React.FC<Props> = ({
                             {formatCurrency(item.unitPrice || 0)}
                           </span>
                           <input
-                            type="number"
-                            min="0"
+                            type="text"
+                            inputMode="numeric"
                             onKeyDown={handleKeyDown}
-                            value={item.unitPrice ?? ''}
+                            value={formatInput(item.unitPrice)}
                             onChange={(e) => handleNumberChange(item.id, 'unitPrice', e.target.value)}
                             className={`w-full text-right bg-white rounded-md border border-slate-200 py-1.5 px-2 text-sm text-slate-700 outline-none transition-all focus:border-transparent focus:ring-2 ${ringFocus} print:hidden`}
                             placeholder="0"
@@ -168,10 +179,10 @@ export const BudgetTable: React.FC<Props> = ({
                             {formatCurrency(item.amount)}
                         </span>
                         <input
-                            type="number"
-                            min="0"
+                            type="text"
+                            inputMode="numeric"
                             onKeyDown={handleKeyDown}
-                            value={item.amount ?? ''}
+                            value={formatInput(item.amount)}
                             onChange={(e) => handleNumberChange(item.id, 'amount', e.target.value)}
                             className={`w-full text-right bg-white rounded-md border border-slate-200 py-1.5 px-2 text-sm font-semibold outline-none transition-all focus:border-transparent focus:ring-2 ${ringFocus} ${accentColor} print:hidden`}
                             placeholder="0"

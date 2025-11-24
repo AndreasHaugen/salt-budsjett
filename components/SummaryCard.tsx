@@ -11,7 +11,11 @@ export const SummaryCard: React.FC<Props> = ({ totalIncome, totalExpense }) => {
   const isPositive = result >= 0;
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('no-NO', { style: 'currency', currency: 'NOK' }).format(amount);
+    return new Intl.NumberFormat('no-NO', { 
+        style: 'currency', 
+        currency: 'NOK',
+        maximumFractionDigits: 0 
+    }).format(amount);
   };
 
   return (
