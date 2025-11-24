@@ -111,13 +111,14 @@ const App: React.FC = () => {
       {/* Top Navigation Bar */}
       <div className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20 no-print">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-                <div className="flex items-center gap-3">
+            <div className="flex justify-between items-center h-50">
+                <div className="flex items-center gap-10">
                     {/* Logo */}
-                    <div className="text-slate-900">
-                      <SaltLogo className="h-8 w-auto" />
+                    <div className="text-slate-900 flex-shrink-0">
+                      <SaltLogo className="h-24 md:h-32 w-auto" />
                     </div>
-                    <h1 className="text-lg font-bold text-slate-800 tracking-tight ml-1">Salt Prosjektbudsjett</h1>
+                    <div className="h-12 w-px bg-slate-200 hidden sm:block"></div>
+                    <h1 className="text-xl md:text-2xl font-bold text-slate-800 tracking-tight hidden sm:block">Salt Prosjektbudsjett</h1>
                 </div>
                 <div className="flex space-x-3">
                     <button 
