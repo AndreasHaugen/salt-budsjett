@@ -21,19 +21,9 @@
     </script>
     <style>
       @media print {
-        @page { margin: 1cm; size: A4; }
+        @page { margin: 0.5cm; size: A4; }
         
-        html, body { 
-          height: auto !important; 
-          overflow: visible !important; 
-          background: white !important;
-          color: black !important;
-          width: 100% !important;
-          font-size: 12pt;
-        }
-        
-        /* Force background colors to print for charts/tables */
-        * { 
+        body { 
           -webkit-print-color-adjust: exact !important; 
           print-color-adjust: exact !important; 
         }
@@ -46,17 +36,9 @@
           page-break-inside: avoid !important;
         }
         
-        .print-shadow-none { 
-          box-shadow: none !important; 
-          border: 1px solid #e2e8f0 !important; 
-        }
-        
         /* Linear layout for print */
         .print-block { display: block !important; width: 100% !important; }
         .print-mb-8 { margin-bottom: 2rem !important; }
-        
-        /* Reset containers for print */
-        #root { overflow: visible !important; }
         
         /* Ensure inputs look like text */
         input {

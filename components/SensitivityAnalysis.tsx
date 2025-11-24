@@ -105,13 +105,13 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
 
   const getCellColor = (value: number) => {
     if (Math.abs(value) < 1) return 'bg-slate-100 text-slate-500';
-    if (value > 0) return 'bg-emerald-100 text-emerald-700 font-medium print:bg-emerald-50 print:text-emerald-900'; 
-    return 'bg-rose-100 text-rose-700 font-medium print:bg-rose-50 print:text-rose-900';
+    if (value > 0) return 'bg-emerald-100 text-emerald-700 font-medium'; 
+    return 'bg-rose-100 text-rose-700 font-medium';
   };
 
   if (variableIncomeItems.length === 0) {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-8 text-center print-break-inside-avoid print:border-slate-300">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-8 text-center print-break-inside-avoid">
         <AlertCircle className="w-10 h-10 text-slate-300 mx-auto mb-3" />
         <h3 className="text-lg font-semibold text-slate-700">Sensitivitetsanalyse mangler data</h3>
         <p className="text-slate-500">Legg til en variabel inntekt (f.eks. Deltakeravgift) for å aktivere analysen.</p>
@@ -120,11 +120,11 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-6 print-break-inside-avoid print-shadow-none print:border-slate-300">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 p-6 print-break-inside-avoid">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <div>
           <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-indigo-500 print:text-indigo-700" />
+            <TrendingUp className="w-5 h-5 text-indigo-500" />
             Sensitivitetsanalyse
           </h2>
           <p className="text-sm text-slate-500 mt-1">
@@ -152,7 +152,7 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
             <table className="w-full text-sm text-right border-separate border-spacing-1">
               <thead>
                 <tr>
-                  <th className="p-2 text-left text-xs text-slate-400 font-semibold uppercase w-32 print:text-slate-600">
+                  <th className="p-2 text-left text-xs text-slate-400 font-semibold uppercase w-32">
                       <div className="flex items-center gap-1">
                           <Users className="w-3 h-3" />
                           Deltakere
@@ -163,8 +163,8 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
                       </div>
                   </th>
                   {matrixData[0].rowResults.map((col, idx) => (
-                    <th key={idx} className={`p-3 rounded-lg ${idx === 2 ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200 print:ring-indigo-400 print:bg-indigo-50' : 'bg-slate-50 text-slate-600 print:bg-slate-100'}`}>
-                      <div className="text-xs font-light opacity-70 mb-0.5 print:opacity-100">
+                    <th key={idx} className={`p-3 rounded-lg ${idx === 2 ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-50 text-slate-600'}`}>
+                      <div className="text-xs font-light opacity-70 mb-0.5">
                           {idx === 2 ? 'Nå' : `${steps[idx] > 0 ? '+' : ''}${steps[idx]*100}%`}
                       </div>
                       <div className="font-bold text-base whitespace-nowrap">{formatWithSpaces(col.price)} kr</div>
@@ -175,10 +175,10 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
               <tbody>
                 {matrixData.map((row, rowIdx) => (
                   <tr key={rowIdx}>
-                    <td className={`p-3 rounded-lg font-semibold text-left ${rowIdx === 2 ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200 print:ring-indigo-400 print:bg-indigo-50' : 'bg-slate-50 text-slate-600 print:bg-slate-100'}`}>
+                    <td className={`p-3 rounded-lg font-semibold text-left ${rowIdx === 2 ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-50 text-slate-600'}`}>
                       <div className="flex flex-col">
                           <span className="text-base whitespace-nowrap">{formatWithSpaces(row.attendees)}</span>
-                          <span className="text-[10px] font-light opacity-70 print:opacity-100">
+                          <span className="text-[10px] font-light opacity-70">
                               {rowIdx === 2 ? `Nå (${baseAttendees})` : `${steps[rowIdx] > 0 ? '+' : ''}${steps[rowIdx]*100}%`}
                           </span>
                       </div>
@@ -186,7 +186,7 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
                     {row.rowResults.map((cell, colIdx) => (
                       <td 
                           key={colIdx} 
-                          className={`p-3 rounded-lg transition-all ${getCellColor(cell.result)} ${rowIdx === 2 && colIdx === 2 ? 'ring-2 ring-slate-800 z-10 print:ring-black' : ''}`}
+                          className={`p-3 rounded-lg transition-all ${getCellColor(cell.result)} ${rowIdx === 2 && colIdx === 2 ? 'ring-2 ring-slate-800 z-10' : ''}`}
                           title={`Resultat: ${formatFullCurrency(cell.result)}`}
                       >
                         {formatCurrency(cell.result)}
@@ -198,7 +198,7 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
             </table>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-slate-100 print:border-slate-200">
+          <div className="mt-4 pt-4 border-t border-slate-100">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="text-xs text-slate-500 max-w-lg">
                     <div className="flex items-start gap-1.5 mb-1">
@@ -210,9 +210,9 @@ export const SensitivityAnalysis: React.FC<Props> = ({ items }) => {
                         </p>
                     </div>
                 </div>
-                <div className="text-xs text-slate-400 flex gap-4 italic print:text-slate-600 whitespace-nowrap">
-                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-emerald-200 print:bg-emerald-400"></div> Overskudd</span>
-                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-rose-200 print:bg-rose-400"></div> Underskudd</span>
+                <div className="text-xs text-slate-400 flex gap-4 italic whitespace-nowrap">
+                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-emerald-200"></div> Overskudd</span>
+                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-rose-200"></div> Underskudd</span>
                 </div>
             </div>
           </div>

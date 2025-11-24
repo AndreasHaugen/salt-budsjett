@@ -69,23 +69,23 @@ export const BudgetTable: React.FC<Props> = ({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden mb-8 transition-all hover:shadow-md print:shadow-none print:border-slate-300 print:mb-8 print-break-inside-avoid">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden mb-8 transition-all hover:shadow-md print-break-inside-avoid">
       {/* Modern Header */}
-      <div className="flex justify-between items-center p-6 border-b border-slate-100 print:border-slate-200 print:py-4">
+      <div className="flex justify-between items-center p-6 border-b border-slate-100">
         <div className="flex items-center gap-4">
-            <div className={`p-3 rounded-xl ${bgAccent} print:bg-transparent print:p-0`}>
-                <Icon className={`w-6 h-6 ${accentColor} print:text-slate-800`} />
+            <div className={`p-3 rounded-xl ${bgAccent}`}>
+                <Icon className={`w-6 h-6 ${accentColor}`} />
             </div>
             <div>
                 <h3 className="font-bold text-slate-800 text-lg">{title}</h3>
-                <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mt-0.5 print:text-slate-500">
+                <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mt-0.5">
                     {type === 'fixed' ? 'Fast beløp' : 'Pris per enhet × Antall'}
                 </p>
             </div>
         </div>
         <div className="text-right">
-            <p className="text-xs text-slate-400 font-semibold uppercase mb-1 print:text-slate-500">Sum</p>
-            <p className={`text-xl font-bold font-mono ${accentColor} print:text-black`}>
+            <p className="text-xs text-slate-400 font-semibold uppercase mb-1">Sum</p>
+            <p className={`text-xl font-bold font-mono ${accentColor}`}>
                 kr {formatCurrency(totalSection)}
             </p>
         </div>
@@ -94,7 +94,7 @@ export const BudgetTable: React.FC<Props> = ({
       <div className="p-0">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-slate-50/50 border-b border-slate-100 text-xs uppercase text-slate-400 print:bg-white print:border-slate-300 print:text-slate-600">
+            <tr className="bg-slate-50/50 border-b border-slate-100 text-xs uppercase text-slate-400">
               <th className="px-6 py-4 font-semibold w-10 print:hidden"></th>
               <th className="px-4 py-4 font-semibold">Beskrivelse</th>
               {isVariable && (
@@ -107,7 +107,7 @@ export const BudgetTable: React.FC<Props> = ({
               <th className="px-4 py-4 font-semibold w-12 print:hidden"></th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-50 print:divide-slate-200">
+          <tbody className="divide-y divide-slate-50">
             {sectionItems.map((item) => (
               <tr key={item.id} className="group hover:bg-slate-50/80 transition-colors print:hover:bg-transparent">
                  <td className="px-6 py-3 text-slate-300 print:hidden">

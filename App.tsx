@@ -107,7 +107,7 @@ const App: React.FC = () => {
 
   // --- Render ---
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-20 selection:bg-indigo-100 selection:text-indigo-900 print:bg-white print:pb-0">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-20 selection:bg-indigo-100 selection:text-indigo-900">
       {/* Top Navigation Bar */}
       <div className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20 no-print">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -156,7 +156,7 @@ const App: React.FC = () => {
           {/* Income Section */}
           <div className="space-y-6 print-mb-8">
              <div className="flex items-center gap-3 pb-2 border-b border-slate-200 print-break-inside-avoid">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 font-bold text-sm print:border print:border-emerald-200">1</span>
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 font-bold text-sm">1</span>
                 <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Inntekter</h2>
              </div>
              
@@ -188,7 +188,7 @@ const App: React.FC = () => {
           {/* Expenses Section */}
           <div className="space-y-6">
             <div className="flex items-center gap-3 pb-2 border-b border-slate-200 print-break-inside-avoid">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-rose-100 text-rose-600 font-bold text-sm print:border print:border-rose-200">2</span>
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-rose-100 text-rose-600 font-bold text-sm">2</span>
                 <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Kostnader</h2>
              </div>
 
