@@ -1,0 +1,5 @@
+{
+  "name": "Salt Budsjettplanlegger",
+  "description": "En dynamisk budsjett-app for prosjektplanlegging, spesielt tilpasset arrangementer og leirer.",
+  "requestFramePermissions": []
+}

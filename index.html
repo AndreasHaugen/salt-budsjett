@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salt Budsjettplanlegger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0f172a', // Slate 900
+              accent: '#3b82f6', // Blue 500
+              income: '#10b981', // Emerald 500
+              expense: '#ef4444', // Red 500
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @media print {
+        @page { margin: 1cm; size: A4; }
+        
+        html, body { 
+          height: auto !important; 
+          overflow: visible !important; 
+          background: white !important;
+          color: black !important;
+          width: 100% !important;
+          font-size: 12pt;
+        }
+        
+        /* Force background colors to print for charts/tables */
+        * { 
+          -webkit-print-color-adjust: exact !important; 
+          print-color-adjust: exact !important; 
+        }
+
+        .no-print { display: none !important; }
+        
+        /* Prevent elements from being split across pages */
+        .print-break-inside-avoid { 
+          break-inside: avoid !important; 
+          page-break-inside: avoid !important;
+        }
+        
+        .print-shadow-none { 
+          box-shadow: none !important; 
+          border: 1px solid #e2e8f0 !important; 
+        }
+        
+        /* Linear layout for print */
+        .print-block { display: block !important; width: 100% !important; }
+        .print-mb-8 { margin-bottom: 2rem !important; }
+        
+        /* Reset containers for print */
+        #root { overflow: visible !important; }
+        
+        /* Ensure inputs look like text */
+        input {
+          border: none !important;
+          background: transparent !important;
+          padding: 0 !important;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "uuid": "https://aistudiocdn.com/uuid@^13.0.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-50 text-slate-800 antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
