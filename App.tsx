@@ -3,17 +3,16 @@ import { ProjectHeader } from './components/ProjectHeader';
 import { SummaryCard } from './components/SummaryCard';
 import { BudgetTable } from './components/BudgetTable';
 import { SensitivityAnalysis } from './components/SensitivityAnalysis';
-import { SaltLogo } from './components/SaltLogo';
 import { BudgetItem, ProjectInfo, BudgetCategory, CostType } from './types';
 import { Download, Plus, FileText, Printer } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- State ---
   const [projectInfo, setProjectInfo] = useState<ProjectInfo>({
-    name: 'Sommerfest 2024',
+    name: '',
     owner: '',
-    startDate: new Date().toISOString().split('T')[0],
-    endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    startDate: '',
+    endDate: '',
     location: '',
   });
 
@@ -78,7 +77,7 @@ const App: React.FC = () => {
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", `budsjett_${projectInfo.name.replace(/\s+/g, '_')}.csv`);
+      link.setAttribute("download", `budsjett_${projectInfo.name.replace(/\s+/g, '_') || 'uten_navn'}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -111,14 +110,9 @@ const App: React.FC = () => {
       {/* Top Navigation Bar */}
       <div className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20 no-print">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-50">
-                <div className="flex items-center gap-10">
-                    {/* Logo */}
-                    <div className="text-slate-900 flex-shrink-0">
-                      <SaltLogo className="h-24 md:h-32 w-auto" />
-                    </div>
-                    <div className="h-12 w-px bg-slate-200 hidden sm:block"></div>
-                    <h1 className="text-xl md:text-2xl font-bold text-slate-800 tracking-tight hidden sm:block">Salt Prosjektbudsjett</h1>
+            <div className="flex justify-between items-center py-4">
+                <div className="flex items-center gap-4">
+                    <h1 className="text-xl md:text-2xl font-bold text-slate-800 tracking-tight">Salt Prosjektbudsjett</h1>
                 </div>
                 <div className="flex space-x-3">
                     <button 

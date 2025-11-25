@@ -7,7 +7,7 @@ interface Props {
 export const SaltLogo: React.FC<Props> = ({ className = "w-auto h-10" }) => {
   return (
     <img 
-      src="../logo.png" 
+      src="/logo.png" 
       alt="Salt Logo" 
       className={`${className} object-contain`}
     />

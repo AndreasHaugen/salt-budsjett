@@ -35,7 +35,7 @@ export const ProjectHeader: React.FC<Props> = ({ info, onChange }) => {
             value={info.name}
             onChange={(e) => onChange('name', e.target.value)}
             className="block w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm print:hidden"
-            placeholder="Eks: Sommerleir 2024"
+            placeholder="Prosjektnavn"
           />
         </div>
 
@@ -64,7 +64,7 @@ export const ProjectHeader: React.FC<Props> = ({ info, onChange }) => {
             Periode
           </label>
           <div className="hidden print:block text-slate-800 font-medium text-base py-1">
-             {formatDate(info.startDate)} – {formatDate(info.endDate)}
+             {formatDate(info.startDate) ? `${formatDate(info.startDate)} – ${formatDate(info.endDate)}` : '–'}
           </div>
           <div className="flex items-center gap-2 print:hidden">
             <input
